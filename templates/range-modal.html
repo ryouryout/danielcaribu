@@ -1,0 +1,51 @@
+<!-- Modal -->
+<div class="modal fade" id="rangeModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="staticBackdropLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="staticBackdropLabel">可動域を校正</h1>
+      </div>
+      <div class="modal-body">
+        <p><b class="pulsing-text">測定中です。</b></p>
+        <p>可動域全体を取るため、片方向に最低 2 周、反対方向にも最低 2 周、ゆっくり回してください。</p>
+
+        <div style="display: flex; justify-content: center; gap: 0px; align-items: center; font-family: monospace; font-size: 0.85em;">
+          <div style="text-align: left; min-width: 65px;">
+            <div><small>LX: <span id="range-lx-lbl">0.00</span></small></div>
+            <div><small>LY: <span id="range-ly-lbl">0.00</span></small></div>
+          </div>
+          <div style="text-align: center;">
+            <canvas id="range-left-stick-canvas" width="150" height="150"></canvas>
+          </div>
+          <div style="text-align: center;">
+            <canvas id="range-right-stick-canvas" width="150" height="150"></canvas>
+          </div>
+          <div style="text-align: left; min-width: 65px;">
+            <div id="range-rx"><small>RX: <span id="range-rx-lbl">0.00</span></small></div>
+            <div id="range-ry"><small>RY: <span id="range-ry-lbl">0.00</span></small></div>
+          </div>
+        </div>
+
+        <div class="progress mt-2" id="range-progress-container" role="progressbar" aria-label="Range calibration progress" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100">
+          <div id="range-progress-bar" class="progress-bar" style="width:0%"></div>
+        </div>
+        <div class="mt-2" id="range-progress-text-container">
+          <small class="text-muted">
+            <span>進捗</span>: <span id="range-progress-text">0%</span>
+          </small>
+        </div>
+
+        <div class="alert alert-info mt-3" id="range-calibration-alert" role="alert">
+          <span id="keep-rotating-alert" ><i class="fas fa-info-circle"></i>
+            <small>進捗が止まって見えても、回し続けてください。</small>
+          </span>
+          <br><br>
+          <small><b>完了</b> ボタンは最大 15 秒後に有効になります。回さずに終了すると、校正は不完全になります。</small>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" id="range-done-btn" class="btn btn-outline-primary" onclick="calibrate_range_on_close()">完了</button>
+      </div>
+    </div>
+  </div>
+</div>

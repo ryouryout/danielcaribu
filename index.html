@@ -1,0 +1,463 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>だにえるキャリブー</title>
+<meta name="theme-color" content="#f3f1ec">
+
+<link id="bootstrap-css" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/fontawesome.min.css"
+      integrity="sha384-NvKbDTEnL+A8F/AA5Tc5kmMLSJHUO868P+lDtTpJIeQdGYaUIuLr4lVGOEA1OcMy"
+      crossorigin="anonymous">
+
+<link rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/@fortawesome/fontawesome-free@6.6.0/css/all.min.css"
+      integrity="sha384-h/hnnw1Bi4nbpD6kE7nYfCXzovi622sY5WBxww8ARKwpdLj5kUWjRuyiXaD1U2JT"
+      crossorigin="anonymous">
+
+
+<script src="https://code.jquery.com/jquery-3.7.1.min.js"
+        integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo="
+        crossorigin="anonymous"></script>
+
+<meta http-equiv="Permissions-Policy" content="interest-cohort=()">
+<script type="module" src="js/core.js"></script>
+
+<link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
+<link rel="manifest" href="site.webmanifest">
+
+<link rel="icon" type="image/png" href="favicon-96x96.png" sizes="96x96">
+<link rel="icon" type="image/svg+xml" href="favicon.svg" />
+<link rel="shortcut icon" href="favicon.ico" />
+<meta name="apple-mobile-web-app-title" content="だにえるキャリブー" />
+
+<!-- External CSS files -->
+<link rel="stylesheet" href="css/main.css">
+<link rel="stylesheet" href="css/finetune.css">
+
+</head>
+<body class="jp-calibration-app">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+
+  <nav class="navbar site-nav">
+    <div class="container-xl px-3 px-lg-4">
+      <div class="brand-lockup">
+        <a class="brand-home" href="./" aria-label="だにえるキャリブー">
+          <img class="brand-logo" src="assets/pig-logo.svg" alt="" width="52" height="52">
+          <span class="brand-text">
+            <span class="navbar-brand ds-i18n">だにえるキャリブー</span>
+            <span class="brand-caption">PlayStation Controller Calibration</span>
+          </span>
+        </a>
+      </div>
+      <div class="nav-status" aria-label="site label">
+        <span>USB / WebHID</span>
+      </div>
+    </div>
+  </nav>
+
+  <main class="page-shell">
+    <section class="hero-section">
+      <div class="container-xl px-3 px-lg-4">
+        <div class="hero-panel">
+          <div class="hero-copy">
+            <span class="hero-eyebrow">DualShock 4 / DualSense / Edge / VR2 Sense</span>
+            <h1>接続から保存までを順に進める校正画面</h1>
+            <p class="hero-lead">
+              USB 接続した PlayStation コントローラーの校正と確認を行います。
+              接続、中心調整、可動域調整、確認、保存の順に進めてください。
+            </p>
+            <div class="hero-pills" aria-label="対応環境">
+              <span>USB 接続のみ</span>
+              <span>Chrome / Edge</span>
+              <span>HTTPS / ローカル URL</span>
+            </div>
+          </div>
+          <aside class="hero-aside" aria-label="開始前の案内">
+            <div class="hero-aside-card">
+              <p class="hero-aside-label">開始前の確認</p>
+              <ul class="plain-checklist">
+                <li>GitHub Pages または <code>Start.command</code> / <code>Start.bat</code> で開く</li>
+                <li>USB ケーブルで接続する</li>
+                <li>バッテリー残量を十分に確保する</li>
+                <li>処理中はブラウザを閉じない</li>
+              </ul>
+            </div>
+            <div class="hero-aside-card hero-aside-card-soft">
+              <p class="hero-aside-label">保存前の確認</p>
+              <ul class="plain-checklist">
+                <li>中心校正と可動域校正を先に終える</li>
+                <li>必要ならクイックテストと表示値で確認する</li>
+                <li>問題がある場合は保存せず再調整する</li>
+                <li>永続保存は最後に一度だけ行う</li>
+              </ul>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </section>
+
+    <section class="guide-section">
+      <div class="container-xl px-3 px-lg-4">
+        <div class="guide-grid">
+          <article class="guide-card">
+            <p class="guide-kicker">1. 起動</p>
+            <h2>GitHub Pages またはローカル起動で開く</h2>
+            <p>
+              GitHub Pages の HTTPS URL か、Mac の <code>Start.command</code> / Windows の <code>Start.bat</code> で起動したローカル URL を使ってください。<code>index.html</code> の直接オープンでは動作しません。
+            </p>
+          </article>
+          <article class="guide-card">
+            <p class="guide-kicker">2. 接続</p>
+            <h2>USB 接続して認証する</h2>
+            <p>
+              接続ボタンを押し、対象のコントローラーを 1 台だけ選択してください。
+            </p>
+          </article>
+          <article class="guide-card">
+            <p class="guide-kicker">3. 校正</p>
+            <h2>確認してから保存する</h2>
+            <p>
+              中心調整、可動域調整、必要なら微調整を行い、最後に本体へ保存してください。
+            </p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="workspace-section">
+      <div class="container-xl px-3 px-lg-4">
+
+    <div id="aboutdrift" class="status-panel workspace-start-panel" style="display: none;">
+      <div class="workspace-start-grid">
+        <section class="workspace-start-main">
+          <p class="guide-kicker">操作手順</p>
+          <h2>接続から保存までの手順</h2>
+          <ol class="usage-steps">
+            <li>USB で接続し、「接続」を押します。</li>
+            <li>中心校正またはクイック校正を行います。</li>
+            <li>可動域校正を行い、必要なら微調整を開きます。</li>
+            <li>表示値やクイックテストで結果を確認します。</li>
+            <li>問題がなければ本体へ保存します。</li>
+          </ol>
+        </section>
+        <aside class="workspace-start-side">
+          <div class="workspace-note-card">
+            <p class="hero-aside-label">補足</p>
+            <p class="hero-note">Bluetooth 接続では処理できません。接続に失敗する場合は USB 接続へ切り替えてください。</p>
+          </div>
+          <div id="lastConnected" class="workspace-note-card" style="display: none;">
+            <p class="hero-aside-label">前回接続</p>
+            <p id="lastConnectedInfo" class="last-connected-info"></p>
+            <p id="lastConnectedWarning" class="last-connected-warning" style="display: none;">
+              未保存の変更が残っている可能性があります。必要なら再接続後に保存してください。
+            </p>
+          </div>
+        </aside>
+      </div>
+    </div>
+
+    <!-- Unsupported Browser Warning -->
+    <div id="missinghid" style="bottom: 80px; left: 0; right: 0; z-index: 1030; padding: 12px 20px; display: none;">
+      <div class="container">
+        <div style="border: 2px solid #0d6efd; border-radius: 8px; color: #0d6efd; padding: 12px; background-color: white;">
+          <p class="mb-1">
+            <i class="fas fa-hand"></i>&nbsp;&nbsp;
+            <span>このブラウザでは利用できません。</span>
+          </p>
+          <p class="mb-1">
+            <span>PC または Mac の Chrome / Edge など、WebHID 対応ブラウザを使ってください。</span>
+            <span>Firefox は WebHID 拡張導入時のみ対象です。</span>
+          </p>
+          <p class="mb-0">
+            <span>スマートフォンやタブレットは対象外です。</span>
+          </p>
+        </div>
+      </div>
+    </div>
+
+    <div id="offlinebar" class="vstack p-3 status-panel" style="display: none;">
+      <p>USB で接続したコントローラーを認識させるには「接続」を押してください。</p>
+      <button id="btnconnect" type="button" class="btn btn-outline-primary" onclick="connect()">
+        <span class="spinner-border spinner-border-sm" style="display: none;" id="connectspinner" aria-hidden="true"></span>
+        <span>接続</span>
+      </button>
+      <br>
+    </div>
+
+    <div id="onlinebar" class="vstack p-3 status-panel" style="display: none;">
+      <div class="row">
+        <div class="col-sm-9 hstack">
+          <p><b>接続中:</b></p>&nbsp;<p id="devname"></p>
+        </div>
+        <div class="col-sm-3">
+          <p id="d-bat" style="text-align: right;"></p>
+        </div>
+      </div>
+      <button type="button" class="btn btn-outline-secondary" onclick="disconnect()">切断</button><br>
+    </div>
+
+    <div id="mainmenu" class="workspace-panel" style="display: none;">
+      <ul class="nav nav-tabs mb-3" id="mainTabs" role="tablist">
+        <li class="nav-item" role="presentation">
+          <button class="nav-link active" id="controller-tab" data-bs-toggle="tab" data-bs-target="#controller-content" type="button" role="tab" aria-controls="controller-content" aria-selected="true">
+            <i class="fas fa-gamepad"></i>&nbsp;&nbsp;<span class="ds-i18n">Calibration</span>
+          </button>
+        </li>
+        <!-- <li class="nav-item" role="presentation">
+          <button class="nav-link" id="tests-tab" data-bs-toggle="tab" data-bs-target="#tests-content" type="button" role="tab" aria-controls="tests-content" aria-selected="false">
+            <i class="fas fa-vial"></i>&nbsp;&nbsp;<span class="ds-i18n">Tests</span>
+          </button>
+        </li> -->
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="info-tab" data-bs-toggle="tab" data-bs-target="#info-content" type="button" role="tab" aria-controls="info-content" aria-selected="false">
+            <i class="fas fa-info-circle"></i>&nbsp;&nbsp;<span class="ds-i18n">Info</span>
+          </button>
+        </li>
+        <li class="nav-item" role="presentation">
+          <button class="nav-link" id="debug-tab" data-bs-toggle="tab" data-bs-target="#debug-content" type="button" role="tab" aria-controls="debug-content" aria-selected="false">
+            <i class="fas fa-bug"></i>&nbsp;&nbsp;<span class="ds-i18n">Debug</span>
+          </button>
+        </li>
+      </ul>
+
+      <div class="tab-content" id="mainTabsContent">
+        <div class="tab-pane show active" id="controller-content" role="tabpanel" aria-labelledby="controller-tab">
+          <!-- Main page content (controller info, calibration, joystick info) -->
+          <div class="row">
+            <div class="col-md-6 col-sm-12">
+              <div class="card text-bg-light" >
+                <div class="card-header"><i class="fas fa-gamepad"></i>&nbsp;&nbsp;<span class="ds-i18n">Controller Info</span></div>
+                <dl class="row px-3 py-2" id="fwinfo"></dl>
+                <span id="infoshowall" class="pb-4 px-4 row">
+                  <button class="btn btn-outline-secondary" onclick="show_info_tab()"><i class="fas fa-plus me-1"></i> <span class="ds-i18n">Show all</span></button>
+                </span>
+              </div>
+              <br>
+
+              <div class="d-flex justify-content-end" id="quick-tests-div">
+                <button type="button" class="btn btn-outline-primary ds-btn mb-3" onclick="show_quick_test_modal()" id="quick-test-btn">
+                  <i class="fas fa-vial" id="quick-test-icon"></i>&nbsp;&nbsp;
+                  <span id="quick-test-text" class="ds-i18n">Quick Test</span>
+                </button>
+              </div>
+
+              <div class="text-center mx-3" id="controller-svg-container">
+                <!-- DualSense 5 Controller SVG loaded from template -->
+                <div id="controller-svg-placeholder"></div>
+              </div>
+            </div>
+
+            <div class="col-md-6 col-sm-12" style="min-width: 330px;">
+              <div class="vstack gap-2 p-2">
+                <button type="button" class="btn btn-primary ds-btn" onclick="calibrate_stick_centers()" id="four-step-center-calib" style="display: none;">
+                  <span class="ds-i18n">Calibrate stick center</span>
+                </button>
+                <div class="btn-group w-100" role="group" style="display: none;" id="quick-center-calib-group">
+                  <button type="button" class="btn btn-primary ds-btn flex-grow-1" onclick="executeSelectedCenterCalibration()" id="quick-center-calib">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="ds-i18n">Calibrate stick center</span>
+                  </button>
+                  <button type="button" class="btn btn-primary ds-btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="flex: 0 0 35px;">
+                    <span class="visually-hidden">Toggle dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" onclick="setCenterCalibrationMethod('quick', event)">
+                      <i class="fas fa-check me-2" id="check-quick" style="display: none;"></i><span class="ds-i18n">Use quick calibration</span>
+                    </a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setCenterCalibrationMethod('four-step', event)">
+                      <i class="fas fa-check me-2" id="check-four-step"></i><span class="ds-i18n">Use four-step calibration</span>
+                    </a></li>
+                  </ul>
+                </div>
+                <div class="btn-group w-100" role="group" id="range-calib-group">
+                  <button type="button" class="btn btn-primary ds-btn flex-grow-1" onclick="executeSelectedRangeCalibration()" id="range-calib">
+                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                    <span class="ds-i18n">Calibrate stick range</span>
+                  </button>
+                  <button type="button" class="btn btn-primary ds-btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="flex: 0 0 35px;">
+                    <span class="visually-hidden">Toggle dropdown</span>
+                  </button>
+                  <ul class="dropdown-menu">
+                    <li><a class="dropdown-item" href="#" onclick="setRangeCalibrationMethod('normal', event)">
+                      <i class="fas fa-check me-2" id="check-range-normal"></i><span class="ds-i18n">Use normal mode</span>
+                    </a></li>
+                    <li><a class="dropdown-item" href="#" onclick="setRangeCalibrationMethod('expert', event)">
+                      <i class="fas fa-check me-2" id="check-range-expert" style="display: none;"></i><span class="ds-i18n">Use expert mode</span>
+                    </a></li>
+                  </ul>
+                </div>
+                <button type="button" class="btn btn-primary ds-btn" onclick="ds5_finetune()" id="ds5finetune">
+                  <span class="ds-i18n">Finetune stick calibration</span>
+                </button>
+                <hr>
+                <button id="savechanges" type="button" class="btn btn-success ds-btn ds-i18n" onclick="flash_all_changes()">Save changes permanently</button>
+                <button id="restore-calibration-btn" type="button" class="btn btn-secondary ds-btn ds-i18n" onclick="openCalibrationHistoryModal()">Restore calibration</button>
+                <button type="button" class="btn btn-danger ds-btn ds-i18n" onclick="reboot_controller()" id="resetBtn">Reboot controller</button>
+
+                <div class="card text-bg-light" >
+                  <div class="card-header"><i class="fas fa-crosshairs"></i>&nbsp;&nbsp;<span class="ds-i18n">Joystick Info</span></div>
+                  <div class="vstack px-2">
+                    <center>
+                      <div style="position: relative; display: inline-block;">
+                        <canvas id="stickCanvas" width="300" height="150"></canvas>
+                        <svg
+                          id="circularityCheckIcon" class="bi" width="32" height="32"
+                          style="cursor: pointer; color: #ff4000cb; position: absolute; top: 25px; right: -30px; display: none;"
+                          onclick="show_circularity_warning()"
+                        >
+                          <use xlink:href="#info"/></svg>
+                      </div>
+                    </center>
+                  </div>
+                  <div class="px-2">
+                    <div class="hstack">
+                      <div class="vstack" style="text-align: center;">
+                        <span>LX:</span>
+                        <pre id="lx-lbl" style="min-width: 80px;"></pre>
+                      </div>
+
+                      <div class="vstack" style="text-align: center;">
+                        <span>LY:</span>
+                        <pre id="ly-lbl" style="min-width: 80px;"></pre>
+                      </div>
+
+                      <div id="stick-item-rx" class="vstack" style="text-align: center;">
+                        <span>RX:</span>
+                        <pre id="rx-lbl" style="min-width: 80px;"></pre>
+                      </div>
+
+                      <div id="stick-item-ry" class="vstack" style="text-align: center;">
+                        <span>RY:</span>
+                        <pre id="ry-lbl" style="min-width: 80px;"></pre>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="px-2">
+                    <center>
+                      <div class="btn-group mb-3" role="group" aria-label="Display mode options">
+                        <input type="radio" class="btn-check" name="displayMode" id="normalMode" value="normal" checked>
+                        <label class="btn btn-outline-secondary btn-sm ds-i18n" for="normalMode">Normal</label>
+
+                        <input type="radio" class="btn-check" name="displayMode" id="centerZoomMode" value="centerZoom">
+                        <label class="btn btn-outline-secondary btn-sm ds-i18n" for="centerZoomMode">10x zoom</label>
+
+                        <input type="radio" class="btn-check" name="displayMode" id="checkCircularityMode" value="checkCircularity">
+                        <label class="btn btn-outline-secondary btn-sm ds-i18n" for="checkCircularityMode">Check circularity</label>
+                      </div>
+                    </center>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+        <!-- <div class="tab-pane" id="tests-content" role="tabpanel" aria-labelledby="tests-tab">
+          <div class="card text-bg-light mt-3" style="min-height: 500px;">
+            <div class="card-header">
+              <i class="fas fa-vial"></i>&nbsp;&nbsp;<span class="ds-i18n">Tests</span>
+            </div>
+            <div class="card-body">
+              <div class="row">
+                <div class="col-4">
+                  <div class="list-group" id="tests-list" role="tablist">
+                    <a class="list-group-item list-group-item-action active ds-i18n" id="haptic-test-tab" data-bs-toggle="list" href="#haptic-test-pane">Haptic Motors</a>
+                  </div>
+                </div>
+                <div class="col-8">
+                  <div class="bg-white border rounded-3 p-4">
+                    <div class="tab-content">
+                      <div class="tab-pane show active" id="haptic-test-pane" role="tabpanel" aria-labelledby="haptic-test-tab">
+                        <h5 class="ds-i18n">Test the Haptic Motors</h5>
+                        <p class="ds-i18n">Press L2 to test the strong (left) haptic motor</p>
+                        <p class="ds-i18n">Press R2 to test the weak (right) haptic motor</p>
+                        <p class="ds-i18n">The motor strength will match how hard you press the trigger</p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div> -->
+        <div class="tab-pane" id="info-content" role="tabpanel" aria-labelledby="info-tab">
+          <div class="container-fluid py-4">
+            <div class="row">
+              <div class="col-lg-12 col-xl-6 py-3">
+                <div class="card">
+                  <h5 class="card-header"><i class="fas fa-code"></i>&nbsp;&nbsp;<span class="ds-i18n">Software</span></h5>
+                  <div class="card-body">
+                    <dl class="row" id="fwinfoextra-fw"></dl>
+                  </div>
+                </div>
+              </div>
+              <div class="col-lg-12 col-xl-6 py-3">
+                <div class="card">
+                  <h5 class="card-header"><i class="fas fa-microchip"></i>&nbsp;&nbsp;<span class="ds-i18n">Hardware</span></h5>
+                  <div class="card-body">
+                    <dl class="row" id="fwinfoextra-hw"></dl>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="tab-pane" id="debug-content" role="tabpanel" aria-labelledby="debug-tab">
+          <div class="container-fluid py-4">
+            <div class="row">
+              <p>接続状態や NVS の確認が必要な場合に使用します。</p>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6 col-sm-12">
+                <div class="card text-bg-light" >
+                  <div class="card-header"><i class="fas fa-bug"></i>&nbsp;&nbsp;<span class="ds-i18n">Debug Info</span></div>
+                  <div class="vstack p-2">
+                    <div class="hstack"><p class="ds-i18n">NVS Status</p><p class="ms-auto ds-i18n" id="d-nvstatus">Unknown</p></div>
+                  </div>
+                </div>
+                <br>
+              </div>
+
+              <div class="col-md-6 col-sm-12">
+                <div class="card text-bg-light" >
+                  <div class="card-header"><i class="fas fa-skull-crossbones"></i>&nbsp;&nbsp;<span class="ds-i18n">Debug buttons</span></div>
+                  <div class="vstack gap-2 p-2">
+                    <div class="hstack gap-2">
+                      <button type="button" class="btn btn-success ds-btn ds-i18n" onclick="refresh_nvstatus()">Query NVS status</button>
+                      <button type="button" class="btn btn-primary ds-btn ds-i18n" onclick="nvsunlock()">NVS unlock</button>
+                      <button type="button" class="btn btn-primary ds-btn ds-i18n" onclick="nvslock()">NVS lock</button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Alert Messages Container -->
+  <div class="container-fluid fixed-bottom " style="z-index: 1040; pointer-events: none; bottom: 24px;">
+    <div class="container">
+      <div id="alert-container" class="mb-3" style="pointer-events: auto;">
+        <!-- Alert messages will be dynamically inserted here -->
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>

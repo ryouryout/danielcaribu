@@ -1,0 +1,67 @@
+<!-- New calibrate modal -->
+<div class="modal fade" id="calibCenterModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1" aria-labelledby="calibTitle" aria-hidden="true">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="calibTitle">スティック中心を校正</h1>
+        <button type="button" id="calibCross" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <div class="row">
+            <div class="col-4">
+                <div class="list-group" id="list-tab">
+                <a class="list-group-item list-group-item-action active" id="list-1-calib">開始前</a>
+                <a class="list-group-item list-group-item-action" id="list-2-calib">手順 1</a>
+                <a class="list-group-item list-group-item-action" id="list-3-calib">手順 2</a>
+                <a class="list-group-item list-group-item-action" id="list-4-calib">手順 3</a>
+                <a class="list-group-item list-group-item-action" id="list-5-calib">手順 4</a>
+                <a class="list-group-item list-group-item-action" id="list-6-calib">完了</a>
+                </div>
+            </div>
+            <div class="col-8">
+                <div class="container" id="list-1">
+                    <h4>スティック中心の校正を行います。</h4>
+
+                    <p>4つの方向で両スティックを動かし、戻した位置を順番に記録します。</p>
+
+                    <p>開始後は途中で中断しないでください。完了するまで、このページを閉じず、コントローラーも切断しないでください。</p>
+
+                    <p><b>開始</b>を押すと手順が始まります。</p>
+                </div>
+                <div class="container" style="display: none;" id="list-2">
+                    <p>両方のスティックを<b>左上</b>まで倒して放してください。</p>
+                    <p>中央へ戻ったら<b>続行</b>を押します。</p>
+                </div>
+                <div class="container" style="display: none;" id="list-3">
+                    <p>両方のスティックを<b>右上</b>まで倒して放してください。</p>
+                    <p>中央へ戻ったら<b>続行</b>を押します。</p>
+                </div>
+                <div class="container" style="display: none;" id="list-4">
+                    <p>両方のスティックを<b>左下</b>まで倒して放してください。</p>
+                    <p>中央へ戻ったら<b>続行</b>を押します。</p>
+                </div>
+                <div class="container" style="display: none;" id="list-5">
+                    <p>両方のスティックを<b>右下</b>まで倒して放してください。</p>
+                    <p>中央へ戻ったら<b>続行</b>を押します。</p>
+                </div>
+                <div class="container" style="display: none;" id="list-6">
+                    <p>中心校正が完了しました。</p>
+                    <p>このウィンドウを閉じて次の作業へ進めます。</p>
+                </div>
+            </div>
+        </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-outline-secondary" id="quickCalibBtn" onclick="quick_calibrate_instead()">
+          <i class="fas fa-bolt"></i>&nbsp;<span>クイック校正</span>
+        </button>
+        <button type="button" class="btn btn-primary" id="calibNext" onclick="calib_next()">
+        <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true" id="btnSpinner" style="display: none;"></span>
+        <span id="calibNextText">開始</span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

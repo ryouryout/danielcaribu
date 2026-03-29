@@ -1,0 +1,161 @@
+/* Fine-tuning interface styling */
+
+#finetuneModal .card {
+  background: rgba(255, 255, 255, 0.78);
+  border: 1px solid var(--line);
+  box-shadow: none;
+}
+
+#finetuneModal .card-header {
+  background: rgba(255, 255, 255, 0.34);
+}
+
+#finetuneModal .btn-group > .btn {
+  min-height: 42px;
+}
+
+#finetuneStickCanvasLx-lbl,
+#finetuneStickCanvasLy-lbl,
+#finetuneStickCanvasRx-lbl,
+#finetuneStickCanvasRy-lbl {
+  padding: 2px 6px !important;
+  border-radius: 12px !important;
+  background-color: transparent !important;
+}
+
+input[id^="finetune"] {
+  width: 90px !important;
+  min-width: 90px !important;
+  color: var(--muted) !important;
+  border: 1px solid rgba(15, 23, 42, 0.1) !important;
+  border-radius: 14px !important;
+  background: rgba(248, 250, 253, 0.94) !important;
+  box-shadow: none !important;
+}
+
+input[id^="finetune"]:focus {
+  border-color: rgba(10, 132, 255, 0.28) !important;
+  box-shadow: 0 0 0 0.2rem rgba(10, 132, 255, 0.1) !important;
+}
+
+#finetuneStickCanvasLx-lbl.text-primary,
+#finetuneStickCanvasLy-lbl.text-primary,
+#finetuneStickCanvasRx-lbl.text-primary,
+#finetuneStickCanvasRy-lbl.text-primary {
+  color: var(--accent-strong) !important;
+  background-color: rgba(10, 132, 255, 0.1) !important;
+}
+
+.finetune-grid {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  grid-template-rows: auto 1fr auto;
+  grid-template-areas:
+    ". top ."
+    "left center right"
+    ". bottom .";
+  justify-items: center;
+  align-items: center;
+  width: 100%;
+  margin: 0 auto;
+  max-width: fit-content;
+}
+
+.finetune-top {
+  grid-area: top;
+}
+
+.finetune-left {
+  grid-area: left;
+}
+
+.finetune-center {
+  grid-area: center;
+}
+
+.finetune-right {
+  grid-area: right;
+}
+
+.finetune-bottom {
+  grid-area: bottom;
+}
+
+.finetune-center-mode {
+  display: block;
+}
+
+.finetune-circularity-mode {
+  display: none;
+}
+
+#finetuneModal.circularity-mode .finetune-center-mode {
+  display: none;
+}
+
+#finetuneModal.circularity-mode .finetune-circularity-mode {
+  display: block;
+}
+
+#finetuneModal.hide-raw-numbers .finetune-top,
+#finetuneModal.hide-raw-numbers .finetune-left,
+#finetuneModal.hide-raw-numbers .finetune-right,
+#finetuneModal.hide-raw-numbers .finetune-bottom {
+  display: none;
+}
+
+#finetuneModal.hide-raw-numbers .spacer.hide-raw-numbers {
+  display: none;
+}
+
+#finetuneModal.hide-raw-numbers .finetune-grid {
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+  grid-template-areas: "center";
+}
+
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasL,
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasR {
+  display: none;
+}
+
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasL,
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasR {
+  display: block;
+}
+
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasL_large,
+#finetuneModal.hide-raw-numbers #finetuneStickCanvasR_large {
+  display: block;
+}
+
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasL_large,
+#finetuneModal:not(.hide-raw-numbers) #finetuneStickCanvasR_large {
+  display: none;
+}
+
+.left-stick-values,
+.right-stick-values {
+  display: block;
+}
+
+.left-stick-slider,
+.right-stick-slider {
+  display: none;
+}
+
+#finetuneModal.circularity-mode #left-stick-card.show-slider .left-stick-values {
+  display: none !important;
+}
+
+#finetuneModal.circularity-mode #left-stick-card.show-slider .left-stick-slider.finetune-circularity-mode {
+  display: block !important;
+}
+
+#finetuneModal.circularity-mode #right-stick-card.show-slider .right-stick-values {
+  display: none !important;
+}
+
+#finetuneModal.circularity-mode #right-stick-card.show-slider .right-stick-slider.finetune-circularity-mode {
+  display: block !important;
+}

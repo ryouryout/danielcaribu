@@ -1,0 +1,19 @@
+<div class="modal fade" id="calibrationHistoryModal" tabindex="-1" aria-labelledby="calibrationHistoryModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="calibrationHistoryModalLabel">保存済みキャリブレーション</h1>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        <div id="historyListContainer">
+          <p class="text-muted">保存済みキャリブレーションはありません。</p>
+        </div>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">閉じる</button>
+        <button type="button" class="btn btn-danger" onclick="calibration_history_clear_all()" id="clearAllBtn" style="display: none;">すべて削除</button>
+      </div>
+    </div>
+  </div>
+</div>

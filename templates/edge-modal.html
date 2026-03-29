@@ -1,0 +1,34 @@
+<div class="modal fade" id="edgeModal" tabindex="-1" aria-labelledby="edgeModalTitle" aria-hidden="true">
+  <div class="modal-dialog modal-xl modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="edgeModalTitle">DualSense Edge の保存について</h5>
+        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+
+      <div class="modal-body p-4" id="donateBody">
+          <p>DualSense Edge のスティックモジュールへ永続保存するには、<b>ソフトウェア以外の作業</b>が必要です。</p>
+          <p>モジュール側の書き込み保護を一時的に解除しない限り、本体への保存は完了しません。</p>
+          <p>必要になるのは、各モジュールの特定テストポイントへ <b>+1.8V</b> を与える作業です。</p>
+
+          <p>方法は次のいずれかです。</p>
+          <ul>
+            <li><b>内部から</b>: +1.8V ソースから write-protect のテストポイントへ配線する</li>
+            <li><b>外部から</b>: コントローラーを開けず、見えているテストポイントへ直接 +1.8V を与える</li>
+          </ul>
+
+        <p><b>内容が分からない場合は実行しないでください。</b></p>
+        <p>参考資料: <a href="https://github.com/lewy20041/Dualsense_Edge_Modules_Callibration">Dualsense_Edge_Modules_Callibration</a></p>
+        <p>保存に失敗した場合は、電圧供給と配線状態を見直してください。</p>
+
+      </div>
+      <div class="modal-footer">
+        <div class="form-check me-auto">
+          <input class="form-check-input" type="checkbox" id="edgeModalDontShowAgain">
+          <label class="form-check-label" for="edgeModalDontShowAgain">今後表示しない</label>
+        </div>
+        <button type="button" class="btn btn-primary" data-bs-dismiss="modal">確認しました</button>
+      </div>
+    </div>
+  </div>
+</div>
