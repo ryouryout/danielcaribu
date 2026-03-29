@@ -559,6 +559,10 @@ dl.row dd {
   animation: fade-up 0.22s ease;
 }
 
+.workspace-actions-column {
+  min-width: 330px;
+}
+
 #controller-svg-container {
   min-height: 320px;
   padding: clamp(16px, 3vw, 24px);
@@ -1025,11 +1029,44 @@ dl.row dd {
   }
 
   .hero-copy h1 {
-    font-size: 2.65rem;
+    font-size: 2.1rem;
+    line-height: 1.08;
   }
 
   .workspace-panel {
     padding: 0.8rem;
+  }
+
+  .hero-panel,
+  .guide-card,
+  .workspace-start-panel,
+  .status-panel,
+  .workspace-panel,
+  .calibration-action-board,
+  .secondary-action-panel {
+    padding: 0.85rem;
+  }
+
+  .hero-section {
+    padding-top: 18px;
+  }
+
+  .hero-lead,
+  .guide-card p,
+  .workspace-note-card p,
+  .calibration-action-description {
+    font-size: 0.94rem;
+    line-height: 1.6;
+  }
+
+  .workspace-actions-column {
+    min-width: 0;
+  }
+
+  #controller-svg-container {
+    min-height: 240px;
+    margin-inline: 0.25rem !important;
+    padding: 14px;
   }
 
   .nav-tabs {
@@ -1051,6 +1088,53 @@ dl.row dd {
     grid-template-columns: 1fr;
   }
 
+  .calibration-action-card {
+    padding: 0.85rem;
+    gap: 0.72rem;
+  }
+
+  .calibration-action-head {
+    gap: 0.7rem;
+  }
+
+  .calibration-action-head h2,
+  .secondary-action-copy h2 {
+    font-size: 1rem;
+  }
+
+  .calibration-action-index {
+    width: 34px;
+    height: 34px;
+    border-radius: 10px;
+    font-size: 0.9rem;
+  }
+
+  .calibration-action-description {
+    min-height: 0;
+  }
+
+  .calibration-primary-button {
+    min-height: 54px;
+    padding: 0.82rem 0.9rem;
+    gap: 0.72rem;
+  }
+
+  .calibration-primary-icon {
+    width: 36px;
+    height: 36px;
+    border-radius: 10px;
+  }
+
+  .calibration-split-toggle {
+    flex-basis: 46px !important;
+  }
+
+  .calibration-action-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.35rem;
+  }
+
   .hstack.gap-2 {
     flex-direction: column;
     align-items: stretch !important;
@@ -1059,5 +1143,36 @@ dl.row dd {
   .hero-pills span {
     width: 100%;
     justify-content: center;
+  }
+}
+
+@media (max-width: 575.98px) {
+  .hero-copy h1 {
+    font-size: 1.86rem;
+  }
+
+  .brand-caption {
+    letter-spacing: 0.08em;
+  }
+
+  .hero-pills {
+    gap: 0.42rem;
+  }
+
+  .hero-aside,
+  .guide-grid,
+  .calibration-action-grid,
+  .secondary-action-grid {
+    gap: 0.72rem;
+  }
+
+  .nav-tabs {
+    gap: 0.25rem;
+    padding: 0.28rem;
+  }
+
+  .nav-tabs .nav-link {
+    padding: 0.58rem 0.78rem;
+    font-size: 0.9rem;
   }
 }
