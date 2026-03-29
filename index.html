@@ -78,14 +78,14 @@
             <div class="hero-pills" aria-label="対応環境">
               <span>USB 接続のみ</span>
               <span>Chrome / Edge</span>
-              <span>HTTPS / ローカル URL</span>
+              <span>HTTPS 公開URL</span>
             </div>
           </div>
           <aside class="hero-aside" aria-label="開始前の案内">
             <div class="hero-aside-card">
               <p class="hero-aside-label">開始前の確認</p>
               <ul class="plain-checklist">
-                <li>GitHub Pages または <code>Start.command</code> / <code>Start.bat</code> で開く</li>
+                <li>公開URLを PC の Chrome / Edge で開く</li>
                 <li>USB ケーブルで接続する</li>
                 <li>バッテリー残量を十分に確保する</li>
                 <li>処理中はブラウザを閉じない</li>
@@ -110,9 +110,9 @@
         <div class="guide-grid">
           <article class="guide-card">
             <p class="guide-kicker">1. 起動</p>
-            <h2>GitHub Pages またはローカル起動で開く</h2>
+            <h2>公開URLから開く</h2>
             <p>
-              GitHub Pages の HTTPS URL か、Mac の <code>Start.command</code> / Windows の <code>Start.bat</code> で起動したローカル URL を使ってください。<code>index.html</code> の直接オープンでは動作しません。
+              GitHub Pages の HTTPS URL を使ってください。ファイルを直接開く方法では動作しません。
             </p>
           </article>
           <article class="guide-card">
@@ -257,51 +257,125 @@
             </div>
 
             <div class="col-md-6 col-sm-12" style="min-width: 330px;">
-              <div class="vstack gap-2 p-2">
-                <button type="button" class="btn btn-primary ds-btn" onclick="calibrate_stick_centers()" id="four-step-center-calib" style="display: none;">
-                  <span class="ds-i18n">Calibrate stick center</span>
-                </button>
-                <div class="btn-group w-100" role="group" style="display: none;" id="quick-center-calib-group">
-                  <button type="button" class="btn btn-primary ds-btn flex-grow-1" onclick="executeSelectedCenterCalibration()" id="quick-center-calib">
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="ds-i18n">Calibrate stick center</span>
-                  </button>
-                  <button type="button" class="btn btn-primary ds-btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="flex: 0 0 35px;">
-                    <span class="visually-hidden">Toggle dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="setCenterCalibrationMethod('quick', event)">
-                      <i class="fas fa-check me-2" id="check-quick" style="display: none;"></i><span class="ds-i18n">Use quick calibration</span>
-                    </a></li>
-                    <li><a class="dropdown-item" href="#" onclick="setCenterCalibrationMethod('four-step', event)">
-                      <i class="fas fa-check me-2" id="check-four-step"></i><span class="ds-i18n">Use four-step calibration</span>
-                    </a></li>
-                  </ul>
-                </div>
-                <div class="btn-group w-100" role="group" id="range-calib-group">
-                  <button type="button" class="btn btn-primary ds-btn flex-grow-1" onclick="executeSelectedRangeCalibration()" id="range-calib">
-                    <span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                    <span class="ds-i18n">Calibrate stick range</span>
-                  </button>
-                  <button type="button" class="btn btn-primary ds-btn dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false" style="flex: 0 0 35px;">
-                    <span class="visually-hidden">Toggle dropdown</span>
-                  </button>
-                  <ul class="dropdown-menu">
-                    <li><a class="dropdown-item" href="#" onclick="setRangeCalibrationMethod('normal', event)">
-                      <i class="fas fa-check me-2" id="check-range-normal"></i><span class="ds-i18n">Use normal mode</span>
-                    </a></li>
-                    <li><a class="dropdown-item" href="#" onclick="setRangeCalibrationMethod('expert', event)">
-                      <i class="fas fa-check me-2" id="check-range-expert" style="display: none;"></i><span class="ds-i18n">Use expert mode</span>
-                    </a></li>
-                  </ul>
-                </div>
-                <button type="button" class="btn btn-primary ds-btn" onclick="ds5_finetune()" id="ds5finetune">
-                  <span class="ds-i18n">Finetune stick calibration</span>
-                </button>
-                <hr>
-                <button id="savechanges" type="button" class="btn btn-success ds-btn ds-i18n" onclick="flash_all_changes()">Save changes permanently</button>
-                <button id="restore-calibration-btn" type="button" class="btn btn-secondary ds-btn ds-i18n" onclick="openCalibrationHistoryModal()">Restore calibration</button>
-                <button type="button" class="btn btn-danger ds-btn ds-i18n" onclick="reboot_controller()" id="resetBtn">Reboot controller</button>
+              <div class="vstack gap-3 p-2">
+                <section class="calibration-action-board" aria-label="校正操作">
+                  <div class="calibration-action-grid">
+                    <article class="calibration-action-card" id="center-calibration-card">
+                      <div class="calibration-action-head">
+                        <span class="calibration-action-index">1</span>
+                        <div>
+                          <p class="calibration-action-kicker">最初に実行</p>
+                          <h2>スティック中心を整える</h2>
+                        </div>
+                      </div>
+                      <p class="calibration-action-description">
+                        中心位置の基準を合わせます。違和感がある場合は、保存前にここからやり直してください。
+                      </p>
+                      <button type="button" class="btn btn-primary ds-btn calibration-primary-button" onclick="calibrate_stick_centers()" id="four-step-center-calib" style="display: none;">
+                        <span class="calibration-primary-icon"><i class="fas fa-crosshairs" aria-hidden="true"></i></span>
+                        <span class="calibration-primary-copy">
+                          <span class="ds-i18n">Calibrate stick center</span>
+                        </span>
+                      </button>
+                      <div class="btn-group w-100 calibration-split-action" role="group" style="display: none;" id="quick-center-calib-group">
+                        <button type="button" class="btn btn-primary ds-btn calibration-primary-button flex-grow-1" onclick="executeSelectedCenterCalibration()" id="quick-center-calib">
+                          <span class="calibration-primary-icon"><i class="fas fa-crosshairs" aria-hidden="true"></i></span>
+                          <span class="calibration-primary-copy">
+                            <span class="ds-i18n">Calibrate stick center</span>
+                          </span>
+                        </button>
+                        <button type="button" class="btn btn-primary ds-btn calibration-split-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#" onclick="setCenterCalibrationMethod('quick', event)">
+                            <i class="fas fa-check me-2" id="check-quick" style="display: none;"></i><span class="ds-i18n">Use quick calibration</span>
+                          </a></li>
+                          <li><a class="dropdown-item" href="#" onclick="setCenterCalibrationMethod('four-step', event)">
+                            <i class="fas fa-check me-2" id="check-four-step"></i><span class="ds-i18n">Use four-step calibration</span>
+                          </a></li>
+                        </ul>
+                      </div>
+                      <div class="calibration-action-meta">
+                        <span class="calibration-mode-chip">選択中</span>
+                        <span id="center-calib-mode-label" class="calibration-mode-value">4ステップ方式</span>
+                      </div>
+                    </article>
+
+                    <article class="calibration-action-card" id="range-calibration-card">
+                      <div class="calibration-action-head">
+                        <span class="calibration-action-index">2</span>
+                        <div>
+                          <p class="calibration-action-kicker">次に実行</p>
+                          <h2>可動域を取り直す</h2>
+                        </div>
+                      </div>
+                      <p class="calibration-action-description">
+                        左右スティックの回転範囲を取り直します。中心調整の後に続けて行ってください。
+                      </p>
+                      <div class="btn-group w-100 calibration-split-action" role="group" id="range-calib-group">
+                        <button type="button" class="btn btn-primary ds-btn calibration-primary-button flex-grow-1" onclick="executeSelectedRangeCalibration()" id="range-calib">
+                          <span class="calibration-primary-icon"><i class="fas fa-compass" aria-hidden="true"></i></span>
+                          <span class="calibration-primary-copy">
+                            <span class="ds-i18n">Calibrate stick range</span>
+                          </span>
+                        </button>
+                        <button type="button" class="btn btn-primary ds-btn calibration-split-toggle dropdown-toggle dropdown-toggle-split" data-bs-toggle="dropdown" aria-expanded="false">
+                          <span class="visually-hidden">Toggle dropdown</span>
+                        </button>
+                        <ul class="dropdown-menu dropdown-menu-end">
+                          <li><a class="dropdown-item" href="#" onclick="setRangeCalibrationMethod('normal', event)">
+                            <i class="fas fa-check me-2" id="check-range-normal"></i><span class="ds-i18n">Use normal mode</span>
+                          </a></li>
+                          <li><a class="dropdown-item" href="#" onclick="setRangeCalibrationMethod('expert', event)">
+                            <i class="fas fa-check me-2" id="check-range-expert" style="display: none;"></i><span class="ds-i18n">Use expert mode</span>
+                          </a></li>
+                        </ul>
+                      </div>
+                      <div class="calibration-action-meta">
+                        <span class="calibration-mode-chip">選択中</span>
+                        <span id="range-calib-mode-label" class="calibration-mode-value">通常モード</span>
+                      </div>
+                    </article>
+
+                    <article class="calibration-action-card calibration-action-card-wide" id="finetune-action-card">
+                      <div class="calibration-action-head">
+                        <span class="calibration-action-index">3</span>
+                        <div>
+                          <p class="calibration-action-kicker">必要な場合のみ</p>
+                          <h2>微調整で追い込む</h2>
+                        </div>
+                      </div>
+                      <p class="calibration-action-description">
+                        まだ気になるズレがあるときだけ使います。中心と可動域の調整後に開いてください。
+                      </p>
+                      <button type="button" class="btn btn-primary ds-btn calibration-primary-button" onclick="ds5_finetune()" id="ds5finetune">
+                        <span class="calibration-primary-icon"><i class="fas fa-sliders-h" aria-hidden="true"></i></span>
+                        <span class="calibration-primary-copy">
+                          <span class="ds-i18n">Finetune stick calibration</span>
+                        </span>
+                      </button>
+                      <div class="calibration-action-meta">
+                        <span class="calibration-mode-chip calibration-mode-chip-soft">任意</span>
+                        <span class="calibration-mode-value">中心と可動域の完了後に使用</span>
+                      </div>
+                    </article>
+                  </div>
+                </section>
+
+                <section class="secondary-action-panel" aria-label="保存と管理">
+                  <div class="secondary-action-copy">
+                    <p class="calibration-action-kicker">保存と管理</p>
+                    <h2>結果を確認したら保存する</h2>
+                  </div>
+                  <div class="secondary-action-grid">
+                    <button id="savechanges" type="button" class="btn btn-success ds-btn ds-i18n secondary-action-primary" onclick="flash_all_changes()">Save changes permanently</button>
+                    <div id="restore-calibration-action">
+                      <button id="restore-calibration-btn" type="button" class="btn btn-secondary ds-btn ds-i18n" onclick="openCalibrationHistoryModal()">Restore calibration</button>
+                    </div>
+                    <button type="button" class="btn btn-danger ds-btn ds-i18n" onclick="reboot_controller()" id="resetBtn">Reboot controller</button>
+                  </div>
+                </section>
 
                 <div class="card text-bg-light" >
                   <div class="card-header"><i class="fas fa-crosshairs"></i>&nbsp;&nbsp;<span class="ds-i18n">Joystick Info</span></div>

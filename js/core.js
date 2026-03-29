@@ -222,12 +222,15 @@ async function continue_connection({data, device}) {
     function applyDeviceUI({ showInfo, showFinetune, showInfoTab, showQuickTests, showFourStepCalib, showQuickCalib, showCalibrationHistory }) {
       $("#infoshowall").toggle(!!showInfo);
       $("#ds5finetune").toggle(!!showFinetune);
+      $("#finetune-action-card").css("display", showFinetune ? "flex" : "none");
       $("#info-tab").toggle(!!showInfoTab);
       $("#quick-tests-div").css("visibility", showQuickTests ? "visible" : "hidden");
+      $("#center-calibration-card").css("display", showFourStepCalib || showQuickCalib ? "flex" : "none");
       $("#four-step-center-calib").toggle(!!showFourStepCalib);
       $("#quick-center-calib").toggle(!!showQuickCalib);
       $("#quick-center-calib-group").toggle(!!showQuickCalib);
       $("#restore-calibration-btn").toggle(!!showCalibrationHistory);
+      $("#restore-calibration-action").toggle(!!showCalibrationHistory);
     }
 
     let controllerInstance = null;
@@ -1371,6 +1374,12 @@ function updateCalibrationMethodUI() {
   $('#check-four-step').toggle(app.centerCalibrationMethod === 'four-step');
   $('#check-range-normal').toggle(app.rangeCalibrationMethod === 'normal');
   $('#check-range-expert').toggle(app.rangeCalibrationMethod === 'expert');
+  $('#center-calib-mode-label').text(
+    app.centerCalibrationMethod === 'quick' ? l('Quick calibration') : l('Four-step calibration')
+  );
+  $('#range-calib-mode-label').text(
+    app.rangeCalibrationMethod === 'expert' ? l('Expert mode') : l('Normal mode')
+  );
 }
 
 function initCalibrationMethod() {
